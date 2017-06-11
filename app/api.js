@@ -2,27 +2,18 @@ import _ from "lodash";
 
 export default function getPoliticians() {
     const query = `
-SELECT distinct ?personLabel ?partyLabel ?image ?nationalist ?foo
+SELECT distinct ?placeLabel ?image ?school ?foo
 
 WHERE
-{
-    { ?party wdt:P1142 wd:Q189280 }
-      UNION 
-    { ?party wdt:P1142 wd:Q852739 }
-    
-    ?party wdt:P1142 ?ideology;
-    
-    FILTER(?ideology = wd:Q189280 || ?ideology = wd:Q852739 )
-    BIND (?ideology = wd:Q852739 AS ?nationalist)
-    
-    ?person wdt:P102 ?party .
-    ?person wdt:P18 ?image .
-    ?person wdt:P1412 wd:Q188 .
-    OPTIONAL {
-       ?person wdt:P570 ?dod
-    }
-    FILTER ( !bound(?dod) ) .
-    SERVICE wikibase:label { bd:serviceParam wikibase:language "de, en" }
+{   
+      { ?place wdt:P31 wd:Q3914 }
+         UNION 
+      { ?place wdt:P31 wd:Q40357 }
+ 
+      ?place wdt:P18 ?image .
+      ?place wdt:P31 ?buildingType
+      BIND (?buildingType = wd:Q3914 AS ?school)
+      SERVICE wikibase:label { bd:serviceParam wikibase:language "de, en" }
     }
 LIMIT 200`;
     const url = `https://query.wikidata.org/bigdata/namespace/wdq/sparql?format=json&query=${query}`;

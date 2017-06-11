@@ -17,9 +17,9 @@ document.addEventListener('DOMContentLoaded', () => {
         politicians.forEach((pol) => {
             const li = document.createElement("li");
             li.style.backgroundImage = `url(${getImageThumbnail(pol)}`;
-            li.dataset.nazi = pol.nationalist.value === "true";
-            li.dataset.name = pol.personLabel.value;
-            li.dataset.party = pol.partyLabel.value;
+            li.dataset.school = pol.school.value === "true";
+            li.dataset.name = pol.placeLabel.value;
+            // li.dataset.party = pol.partyLabel.value;
             cardStack.appendChild(li)
         });
         cardify(stack)
@@ -33,12 +33,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         const personInfo = event.target.dataset;
-        const isNationalist = personInfo.nazi === "true";
-        const expectedDirection = isNationalist ? Direction.RIGHT : Direction.LEFT;
+        const isSchool = personInfo.school === "true";
+        const expectedDirection = isSchool ? Direction.RIGHT : Direction.LEFT;
+        const type = isSchool ? "school" : "prison";
         if (event.throwDirection === expectedDirection) {
-            Toast.correct(`JA! ${personInfo.name} is a member of ${personInfo.party}`)
+            Toast.correct(`JA! ${personInfo.name} is a  ${type}`)
         } else {
-            Toast.wrong(`NEIN! ${personInfo.name} is a member of ${personInfo.party}`)
+            Toast.wrong(`NEIN! ${personInfo.name} is a  ${type}`)
         }
         event.target.style.display = 'none'; // or remove this dom element completely
     });
