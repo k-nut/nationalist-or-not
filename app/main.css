@@ -1,0 +1,46 @@
+html,
+body,
+ul,
+li {
+    margin: 0; padding: 0;
+}
+
+body {
+    background: #FCD424; font: normal 16px/24px 'Helvetica Neue', Helvetica, Arial, freesans, sans-serif;
+}
+
+.stack {
+    width: 200px;
+    height: 300px;
+    background: #ED5D52;
+    position: absolute;
+    top: 100px;
+    left: 50%;
+    margin-left: -100px;
+    border-radius: 10px;
+}
+
+.stack li {
+    width: 200px;
+    height: 300px;
+    list-style: none;
+    background: #fff;
+    border-radius: 5px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    box-shadow: 0 0 2px rgba(0, 0, 0, .2), 1px 1px 1px rgba(0, 0, 0, .2);
+    border: 10px solid #ECECEC;
+    box-sizing: border-box;
+    cursor: default;
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+
+.stack li:nth-child(3) {
+    top: 2px; transform: translate(2px, 2px) rotate(0.4deg);
+}
+
+.stack li:nth-child(2) {
+    top: 4px; transform: translate(-4px, -2px) rotate(-1deg);
+}
