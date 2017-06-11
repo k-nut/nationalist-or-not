@@ -22,5 +22,5 @@ open http://localhost:8080/
 To build a bundled version to `dist` (which can be deployed):
 
 ```bash
-npm build
+npm run build
 ```
