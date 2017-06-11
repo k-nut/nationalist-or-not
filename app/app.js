@@ -3,12 +3,18 @@ import {Stack, Direction} from "swing";
 import Toast from "./toast"
 require("./main.css")
 
+function getImageThumbnail(politician){
+    const image = politician.image.value;
+    const fileName = _.last(image.split("/"));
+    return `https://commons.wikimedia.org/w/thumb.php?width=200&f=${fileName}`
+}
+
 document.addEventListener('DOMContentLoaded', function () {
     getPoliticians().then(politicians => {
         const cardStack = document.querySelector('.stack')
         politicians.forEach((pol) => {
             const li = document.createElement("li");
-            li.style.backgroundImage = `url(${pol.image.value}`;
+            li.style.backgroundImage = `url(${getImageThumbnail(pol)}`;
             li.dataset.nazi = pol.nationalist.value === "true";
             li.dataset.name = pol.personLabel.value;
             li.dataset.party = pol.partyLabel.value;
@@ -29,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (e.target.style.display === "none"){
             return
         }
-        
+
         const personInfo = e.target.dataset;
         const isNationalist = personInfo.nazi === "true";
         const expectedDirection = isNationalist ? Direction.RIGHT : Direction.LEFT;
