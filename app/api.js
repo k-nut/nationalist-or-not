@@ -2,26 +2,15 @@ import _ from "lodash";
 
 export default function getPoliticians() {
     const query = `
-SELECT distinct ?personLabel ?partyLabel ?image ?nationalist ?foo
+SELECT distinct ?personLabel ?partyLabel ?image ?foo
 
 WHERE
 {
-    { ?party wdt:P1142 wd:Q189280 }
-      UNION 
-    { ?party wdt:P1142 wd:Q852739 }
-    
-    ?party wdt:P1142 ?ideology;
-    
-    FILTER(?ideology = wd:Q189280 || ?ideology = wd:Q852739 )
-    BIND (?ideology = wd:Q852739 AS ?nationalist)
-    
+    ?party wdt:P1142 wd:Q852739. 
+      
     ?person wdt:P102 ?party .
     ?person wdt:P18 ?image .
     ?person wdt:P1412 wd:Q188 .
-    OPTIONAL {
-       ?person wdt:P570 ?dod
-    }
-    FILTER ( !bound(?dod) ) .
     SERVICE wikibase:label { bd:serviceParam wikibase:language "de, en" }
     }
 LIMIT 200`;
