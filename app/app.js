@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
         politicians.forEach((pol) => {
             const li = document.createElement("li");
             li.style.backgroundImage = `url(${getImageThumbnail(pol)}`;
-            li.dataset.nazi = "true";
+            li.dataset.nazi = pol.nationalist.value === "true";
             li.dataset.name = pol.personLabel.value;
             li.dataset.party = pol.partyLabel.value;
             cardStack.appendChild(li)

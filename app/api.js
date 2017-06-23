@@ -2,11 +2,17 @@ import _ from "lodash";
 
 export default function getPoliticians() {
     const query = `
-SELECT distinct ?personLabel ?partyLabel ?image ?foo
+SELECT distinct ?personLabel ?partyLabel ?image ?nationalist   
 
 WHERE
 {
-    ?party wdt:P1142 wd:Q852739. 
+    { ?party wdt:P1142 wd:Q189280 }
+      UNION 
+    { ?party wdt:P1142 wd:Q852739 }
+    
+    ?party wdt:P1142 ?ideology;
+    BIND (?ideology = wd:Q852739 AS ?nationalist)
+
       
     ?person wdt:P102 ?party .
     ?person wdt:P18 ?image .
