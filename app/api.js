@@ -11,6 +11,10 @@ WHERE
     ?person wdt:P102 ?party .
     ?person wdt:P18 ?image .
     ?person wdt:P1412 wd:Q188 .
+    OPTIONAL {
+       ?person wdt:P570 ?dod
+    }
+    FILTER ( !bound(?dod) ) .
     SERVICE wikibase:label { bd:serviceParam wikibase:language "de, en" }
     }
 LIMIT 200`;
