@@ -1,13 +1,9 @@
 import getPoliticians from "./api.js"
 import {Stack, Direction} from "swing";
+import { getImageThumbnail } from "./utils.js"
 import Toast from "./toast"
 require("./main.css")
 
-function getImageThumbnail(politician){
-    const image = politician.image.value;
-    const fileName = _.last(image.split("/"));
-    return `https://commons.wikimedia.org/w/thumb.php?width=200&f=${fileName}`
-}
 
 document.addEventListener('DOMContentLoaded', function () {
     getPoliticians().then(politicians => {
