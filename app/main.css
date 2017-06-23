@@ -34,7 +34,7 @@ body {
     box-sizing: border-box;
     cursor: default;
     background-repeat: no-repeat;
-    background-size: 100%;
+    background-size: cover;
 }
 
 .stack li:nth-child(3) {
