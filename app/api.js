@@ -11,6 +11,8 @@ WHERE
     { ?party wdt:P1142 wd:Q852739 }
     
     ?party wdt:P1142 ?ideology;
+
+    FILTER(?ideology = wd:Q189280 || ?ideology = wd:Q852739 )
     BIND (?ideology = wd:Q852739 AS ?nationalist)
 
       
