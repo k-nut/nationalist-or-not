@@ -6,13 +6,8 @@ SELECT distinct ?personLabel ?partyLabel ?image ?nationalist ?foo
 
 WHERE
 {
-    { ?party wdt:P1142 wd:Q189280 }
-      UNION 
-    { ?party wdt:P1142 wd:Q852739 }
-    
+    values ?ideology {wd:Q189280  wd:Q852739} 
     ?party wdt:P1142 ?ideology;
-    
-    FILTER(?ideology = wd:Q189280 || ?ideology = wd:Q852739 )
     BIND (?ideology = wd:Q852739 AS ?nationalist)
     
     ?person wdt:P102 ?party .
