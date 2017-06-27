@@ -1,4 +1,7 @@
-import _ from "lodash";
+import sampleSize from "lodash/sampleSize";
+import {stringify} from 'query-string';
+import createFetch from 'fetch-ponyfill';
+const {fetch} = createFetch();
 
 export default function getPoliticians() {
     const query = `
@@ -19,20 +22,17 @@ WHERE
     SERVICE wikibase:label { bd:serviceParam wikibase:language "de, en" }
     }
 LIMIT 200`;
-    const url = `https://query.wikidata.org/bigdata/namespace/wdq/sparql?format=json&query=${query}`;
-    return window.fetch(url)
-        .then(
-            function (response) {
-                if (response.status !== 200) {
-                    console.warn(`Looks like there was a problem. Status Code: ${response.status}`);
-                    return;
-                }
-                return response.json().then(function (data) {
-                    return _.sampleSize(data.results.bindings, 10);
-                });
-            }
-        )
-        .catch(function (err) {
-            console.warn('Fetch Error :-S', err);
-        });
+    const endpoint = 'https://query.wikidata.org/bigdata/namespace/wdq/sparql'
+    const url = endpoint + '?' + stringify({format: 'json', query});
+
+    return fetch(url)
+    .then(function (res) {
+        if (!res.ok) {
+            throw new Error(`Looks like there was a problem. Status Code: ${res.status}`);
+        }
+        return res.json();
+    })
+    .then(function (data) {
+        return sampleSize(data.results.bindings, 10);
+    });
 }
