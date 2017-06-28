@@ -12,7 +12,8 @@ const cardify = (stack) => {
 document.addEventListener('DOMContentLoaded', () => {
     const stack =  Stack();
 
-    getPoliticians().then(politicians => {
+    getPoliticians()
+    .then(politicians => {
         const cardStack = document.querySelector('.stack');
         politicians.forEach((pol) => {
             const li = document.createElement("li");
@@ -23,6 +24,9 @@ document.addEventListener('DOMContentLoaded', () => {
             cardStack.appendChild(li)
         });
         cardify(stack)
+    })
+    .catch((err) => {
+        console.warn('Fetch Error :-S', err);
     });
 
     stack.on('throwout', function checkThrow(event) {
