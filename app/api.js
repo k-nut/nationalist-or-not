@@ -1,7 +1,5 @@
 import sampleSize from "lodash/sampleSize";
 import {stringify} from 'query-string';
-import createFetch from 'fetch-ponyfill';
-const {fetch} = createFetch();
 
 export default function getPoliticians() {
     const query = `

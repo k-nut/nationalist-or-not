@@ -1,4 +1,4 @@
-require("toastr/package/toastr.css")
+require("toastr/build/toastr.css")
 import toastr from "toastr"
 
 
