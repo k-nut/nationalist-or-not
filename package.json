@@ -11,6 +11,7 @@
     "build": "parcel build ./app/index.html"
   },
   "devDependencies": {
-    "parcel": "^2.0.0-rc.0"
+    "parcel": "^2.10.3",
+    "process": "^0.11.10"
   }
 }
